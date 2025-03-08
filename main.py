@@ -45,9 +45,9 @@ expected_files = ["config.py", "data_loader.py", "train.py", "utils.py", "embedd
 
 for file in expected_files:
     if os.path.exists(file):
-        print(f"✅ {file} exists")
+        print(f"{file} exists")
     else:
-        print(f"❌ {file} is missing!")
+        print(f"{file} is missing!")
 
 import shutil
 
@@ -59,18 +59,18 @@ for nb in notebooks:
 
     if os.path.exists(src):
         shutil.move(src, dest)
-        print(f"✅ Moved {nb} to {folder_path}")
+        print(f"Moved {nb} to {folder_path}")
 
 
 import sys
 sys.path.append(folder_path)
-print("✅ Project folder added to Python path")
+print("Project folder added to Python path")
 
 if "config" in sys.modules:
     del sys.modules["config"]
 import config2 as config
 data_path = os.path.join(folder_path, "ArrangedData/data1")
-print(f"✅ Data path set to: {data_path}")
+print(f"Data path set to: {data_path}")
 model = "vits14"
 
 config.args.embedding_model = model
@@ -125,11 +125,11 @@ else:
 #if not os.path.exists(config.args.save_path):
 os.makedirs(config.args.save_path, exist_ok = True)
 if os.path.exists(config.args.model_save_path) and not os.path.isdir(config.args.model_save_path):
-    print(f"⚠️ ERROR: `{config.args.model_save_path}` exists but is NOT a directory! Deleting and recreating as a folder.")
-    os.remove(config.args.model_save_path)  # ✅ Delete the misclassified file
-    os.makedirs(config.args.model_save_path, exist_ok=True)  # ✅ Create as a proper directory
+    print(f"ERROR: `{config.args.model_save_path}` exists but is NOT a directory! Deleting and recreating as a folder.")
+    os.remove(config.args.model_save_path)  # Delete the misclassified file
+    os.makedirs(config.args.model_save_path, exist_ok=True)  # Create as a proper directory
 elif not os.path.exists(config.args.model_save_path):
-  os.makedirs(config.args.model_save_path, exist_ok=True)  # ✅ Create normally if it doesn't exist
+  os.makedirs(config.args.model_save_path, exist_ok=True)  #  Create normally if it doesn't exist
 
 
 from data_loader import unzip_files, load_transformed_samples
@@ -175,9 +175,9 @@ train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=config.args
 val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=config.args.batch_size, shuffle=False)
 test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=config.args.batch_size, shuffle=False)
 
-print(f"✅ Training samples: {len(train_dataset)}")
-print(f"✅ Validation samples: {len(val_dataset)}")
-print(f"✅ Test samples: {len(test_dataset)}")
+print(f"Training samples: {len(train_dataset)}")
+print(f"Validation samples: {len(val_dataset)}")
+print(f"Test samples: {len(test_dataset)}")
 
 # Train and evaluate
 train_model(train_loader, val_loader)
